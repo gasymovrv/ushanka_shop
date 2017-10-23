@@ -1,0 +1,26 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <!--здесь прописан путь к Java-классу: -->
+  <servlet>
+    <servlet-name>catalogServlet</servlet-name>
+    <servlet-class>ru.sstu.ushankashop.CatalogServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>testServlet</servlet-name>
+    <servlet-class>ru.sstu.ushankashop.TestServlet</servlet-class>
+  </servlet>
+
+  <!--здесь прописан путь к куску адресной строки, вызывающей сервлет: -->
+  <servlet-mapping>
+    <servlet-name>catalogServlet</servlet-name>
+    <url-pattern>/catalog</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>testServlet</servlet-name>
+    <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+</web-app>
