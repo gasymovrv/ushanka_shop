@@ -24,7 +24,7 @@ public class CatalogServlet extends HttpServlet {
 
     public CatalogServlet() {
     }
-
+    //список item
     private static List<Item> ITEMS = Arrays.asList(
             new Item(0L,
                     "Hat-Ushanka",
