@@ -24,6 +24,7 @@ public class CatalogServlet extends HttpServlet {
 
     public CatalogServlet() {
     }
+
     //список item
     private static List<Item> ITEMS = Arrays.asList(
             new Item(0L,
@@ -41,33 +42,20 @@ public class CatalogServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //тестируем обработку параметров
-        if(req.getParameter("a") != null){
+        if (req.getParameter("a") != null) {
             //выводим значение параметра "а"
             resp.getOutputStream().println(req.getParameter("a"));
             //выводим все значения параметра "а"
             resp.getOutputStream().println(Arrays.toString(req.getParameterValues("a")));
         }
-
-        //тестируем обработку загаловка
-        if (req.getHeader("Content-Type") != null) {
-            if (req.getHeader("Content-Type").equals("application/xml")) {
-                //сериализуем на xml и выводим в ответ(response)
-                try {
-                    JAXBContext context = JAXBContext.newInstance(ItemList.class);
-                    Marshaller marshaller = context.createMarshaller();
-                    marshaller.marshal(new ItemList(ITEMS), resp.getOutputStream());
-                } catch (Exception e) {
-                    throw new RuntimeException();
-                }
-            } else if (req.getHeader("Content-Type").equals("application/json")) {
-                //тоже на json и выводим в ответ(response)
-                ObjectMapper om = new ObjectMapper();
-                om.writeValue(resp.getOutputStream(), ITEMS);
-            }
+        //сериализуем на xml и выводим в ответ(response)
+        try {
+            JAXBContext context = JAXBContext.newInstance(ItemList.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.marshal(new ItemList(ITEMS), resp.getOutputStream());
+        } catch (Exception e) {
+            throw new RuntimeException();
         }
-
-
-
     }
 
 
