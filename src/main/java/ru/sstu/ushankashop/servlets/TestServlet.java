@@ -1,4 +1,4 @@
-package ru.sstu.ushankashop;
+package ru.sstu.ushankashop.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

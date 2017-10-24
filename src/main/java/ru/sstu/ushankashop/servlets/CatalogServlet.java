@@ -1,7 +1,5 @@
-package ru.sstu.ushankashop;
+package ru.sstu.ushankashop.servlets;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletConfig;
@@ -10,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.IOException;
 import java.util.Arrays;
@@ -24,7 +21,7 @@ public class CatalogServlet extends HttpServlet {
 
     public CatalogServlet() {
     }
-    //список item
+
     private static List<Item> ITEMS = Arrays.asList(
             new Item(0L,
                     "Hat-Ushanka",
@@ -65,9 +62,6 @@ public class CatalogServlet extends HttpServlet {
                 om.writeValue(resp.getOutputStream(), ITEMS);
             }
         }
-
-
-
     }
 
 

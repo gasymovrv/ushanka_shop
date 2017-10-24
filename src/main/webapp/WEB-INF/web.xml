@@ -7,11 +7,11 @@
   <!--здесь прописан путь к Java-классу: -->
   <servlet>
     <servlet-name>catalogServlet</servlet-name>
-    <servlet-class>ru.sstu.ushankashop.CatalogServlet</servlet-class>
+    <servlet-class>ru.sstu.ushankashop.servlets.CatalogServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>testServlet</servlet-name>
-    <servlet-class>ru.sstu.ushankashop.TestServlet</servlet-class>
+    <servlet-class>ru.sstu.ushankashop.servlets.TestServlet</servlet-class>
   </servlet>
 
   <!--здесь прописан путь к куску адресной строки, вызывающей сервлет: -->

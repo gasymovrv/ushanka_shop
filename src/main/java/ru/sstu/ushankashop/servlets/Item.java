@@ -1,4 +1,4 @@
-package ru.sstu.ushankashop;
+package ru.sstu.ushankashop.servlets;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
