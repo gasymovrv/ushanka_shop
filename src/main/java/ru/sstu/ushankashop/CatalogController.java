@@ -24,19 +24,18 @@ public class CatalogController {
         this.itemDAO = itemDAO;
     }
 
+    /**
+     *
+     * @return то что будем возвращать клиенту, в виде MediaType.APPLICATION_JSON_VALUE
+     */
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Item> getAllItems(){
+    public List<Item> getAllItems() {
         return getItemDAO().getAllItems();
     }
 
-    //TODO перенести логику по поиску Item в ItemDAO
+
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Item getItemByID(@PathVariable Long id){
-        for (int i = 0; i < getItemDAO().getAllItems().size(); i++) {
-            if (getItemDAO().getAllItems().get(i).getId().equals(id)) {
-                return getItemDAO().getAllItems().get(i);
-            }
-        }
-        return null;
+    public Item getItemById(@PathVariable Long id) {
+        return getItemDAO().getItemById(id);
     }
 }
