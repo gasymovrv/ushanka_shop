@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
 
-@Service
+@Service("idao1")//в скобках указываем id данного бина
 public class ItemDAOImpl implements ItemDAO {
     private static List<Item> ITEMS = Arrays.asList(
             new Item(0L, "Hat-Ushanka", "Warm and Cozy", 99.99, 15),
