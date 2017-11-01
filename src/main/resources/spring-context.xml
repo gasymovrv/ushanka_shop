@@ -11,11 +11,17 @@
     <mvc:annotation-driven/>
     <context:component-scan base-package="ru.sstu.ushankashop"/>
 
-    <!--подключаем пул connection для jdbc-->
-    <bean class="com.zaxxer.hikari.HikariDataSource" id="hds">
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ushanka"/>
-        <property name="username" value="ushanka_owner"/>
-        <property name="password" value="password-1"/>
-        <property name="dataSourceProperties" value="useSSL=false"/>
-    </bean>
+    <!--&lt;!&ndash;подключаем пул connection для jdbc&ndash;&gt;-->
+    <!--<bean class="com.zaxxer.hikari.HikariDataSource" id="hds">-->
+        <!--<property name="jdbcUrl"-->
+                  <!--value="jdbc:mysql://localhost:3306/ushanka?verifyServerCertificate=false&amp;useSSL=false&amp;requireSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>-->
+        <!--<property name="username" value="ushanka_owner"/>-->
+        <!--<property name="password" value="password-1"/>-->
+        <!--&lt;!&ndash;<property name="dataSourceProperties" value="&ndash;&gt;-->
+        <!--&lt;!&ndash;verifyServerCertificate=false&amp;&ndash;&gt;-->
+        <!--&lt;!&ndash;useSSL=false&amp;&ndash;&gt;-->
+        <!--&lt;!&ndash;requireSSL=false&amp;&ndash;&gt;-->
+        <!--&lt;!&ndash;useLegacyDatetimeCode=false&amp;&ndash;&gt;-->
+        <!--&lt;!&ndash;serverTimezone=UTC"/>&ndash;&gt;-->
+    <!--</bean>-->
 </beans>

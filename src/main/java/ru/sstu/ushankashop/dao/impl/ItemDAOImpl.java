@@ -2,6 +2,7 @@ package ru.sstu.ushankashop.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Service;
 import ru.sstu.ushankashop.dao.ItemDAO;
 import ru.sstu.ushankashop.domain.ItemEntity;
@@ -17,9 +18,25 @@ import java.util.List;
 @Service
 public class ItemDAOImpl implements ItemDAO {
 
-    @Autowired
-    @Qualifier("hds")
+//    @Autowired
+//    @Qualifier("hds")
     DataSource dataSource;
+
+    {
+        DriverManagerDataSource dataSource1 = new DriverManagerDataSource();
+        String url = "jdbc:mysql://localhost:3306/ushanka"+
+            "?verifyServerCertificate=false"+
+            "&useSSL=false"+
+            "&requireSSL=false"+
+            "&useLegacyDatetimeCode=false"+
+            "&amp"+
+            "&serverTimezone=UTC";
+        dataSource1.setUrl(url);
+        dataSource1.setUsername("ushanka_owner");
+        dataSource1.setPassword("password-1");
+        dataSource1.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource = dataSource1;
+    }
 
     public ItemDAOImpl() {
     }
@@ -71,16 +88,18 @@ public class ItemDAOImpl implements ItemDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM ITEM WHERE id=?;");
             preparedStatement.setLong(1, id);
-
             ResultSet rs = preparedStatement.executeQuery();
-            result = new ItemEntity(
-                    rs.getLong("id"),
-                    rs.getString("name"),
-                    rs.getString("description"),
-                    rs.getDouble("price"),
-                    rs.getInt("stock"),
-                    rs.getString("manufacturer")
-            );
+
+            if (rs.next()) {
+                result = new ItemEntity(
+                        id,
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getDouble("price"),
+                        rs.getInt("stock"),
+                        rs.getString("manufacturer")
+                );
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
