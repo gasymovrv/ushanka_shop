@@ -17,25 +17,15 @@ import java.util.List;
 public class CatalogController {
 
     @Autowired
-    @Qualifier("cs")
     CatalogService catalogService;
-
-    public CatalogService getCatalogService() {
-        return catalogService;
-    }
-
-
-    public void setCatalogService(CatalogService catalogService) {
-        this.catalogService = catalogService;
-    }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Item> getAllItems() {
-        return getCatalogService().getAllItems();
+        return catalogService.getAllItems();
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "{id}")
     public Item getItemDetails(@PathVariable Long id) {
-        return getCatalogService().getItemDetails(id);
+        return catalogService.getItemDetails(id);
     }
 }

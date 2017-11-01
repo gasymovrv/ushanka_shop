@@ -1,7 +1,6 @@
 package ru.sstu.ushankashop.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import ru.sstu.ushankashop.dao.ItemDAO;
@@ -11,32 +10,10 @@ import java.util.List;
 
 @Service
 public class ItemDAOImpl implements ItemDAO {
+    @Autowired
     private ItemMapper itemMapper;
+    @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    public ItemDAOImpl() {
-    }
-
-    public ItemMapper getItemMapper() {
-        return itemMapper;
-    }
-
-    @Autowired
-    @Qualifier("itemMapper")
-    public void setItemMapper(ItemMapper itemMapper) {
-        this.itemMapper = itemMapper;
-    }
-
-    public JdbcTemplate getJdbcTemplate() {
-        return jdbcTemplate;
-    }
-
-    @Autowired
-    @Qualifier("jdbcTemplate")
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
 
     public List<ItemEntity> getAllItems() {
         String sql = "SELECT * FROM item";

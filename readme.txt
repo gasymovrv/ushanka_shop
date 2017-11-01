@@ -13,3 +13,4 @@ MySQL (connector/j 6.0.6)
 driverClassName = com.mysql.cj.jdbc.Driver
 2) зачем доп. слой dto? в чем отличие ItemEntity от Item?
 3) делать через java.sql? или можно использовать spring-jdbc?
+4) @Autowired на полях, а не на сеттерах? зачем тогда сеттеры?
