@@ -18,43 +18,25 @@ import java.util.List;
 @Service
 public class ItemDAOImpl implements ItemDAO {
 
-//    @Autowired
-//    @Qualifier("hds")
-    DataSource dataSource;
-
-    {
-        DriverManagerDataSource dataSource1 = new DriverManagerDataSource();
-        String url = "jdbc:mysql://localhost:3306/ushanka"+
-            "?verifyServerCertificate=false"+
-            "&useSSL=false"+
-            "&requireSSL=false"+
-            "&useLegacyDatetimeCode=false"+
-            "&amp"+
-            "&serverTimezone=UTC";
-        dataSource1.setUrl(url);
-        dataSource1.setUsername("ushanka_owner");
-        dataSource1.setPassword("password-1");
-        dataSource1.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource = dataSource1;
-    }
+    private DataSource dataSource;
 
     public ItemDAOImpl() {
     }
-
 
     public DataSource getDataSource() {
         return dataSource;
     }
 
+    @Autowired
+    @Qualifier("dataSource")
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     public List<ItemEntity> getAllItems() {
-        Connection connection = null;
         List<ItemEntity> result = new ArrayList<ItemEntity>();
-        try {
-            connection = getDataSource().getConnection();
+        try (Connection connection = getDataSource().getConnection()) {
+
             ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM ITEM");
             while (rs.next()) {
                 result.add(new ItemEntity(
@@ -68,23 +50,14 @@ public class ItemDAOImpl implements ItemDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
         }
         return result;
     }
 
     public ItemEntity getItemById(Long id) {
-        Connection connection = null;
         ItemEntity result = null;
-        try {
-            connection = getDataSource().getConnection();
+
+        try (Connection connection = getDataSource().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM ITEM WHERE id=?;");
             preparedStatement.setLong(1, id);
@@ -102,14 +75,6 @@ public class ItemDAOImpl implements ItemDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
         }
         return result;
 
