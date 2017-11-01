@@ -9,6 +9,7 @@ HikariCP-java7 2.4.13
 MySQL (connector/j 6.0.6)
 
 Проблемы:
-1) hikari не коннектится с базой
-пробовал напрямую без hikari - работает
+1) если hikari не коннектится с базой, то надо добавить параметр
+driverClassName = com.mysql.cj.jdbc.Driver
 2) зачем доп. слой dto? в чем отличие ItemEntity от Item?
+3) делать через java.sql? или можно использовать spring-jdbc?

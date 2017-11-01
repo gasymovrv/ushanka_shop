@@ -11,19 +11,19 @@
     <mvc:annotation-driven/>
     <context:component-scan base-package="ru.sstu.ushankashop"/>
 
-    <!--&lt;!&ndash;подключаем пул connection для jdbc&ndash;&gt;-->
-    <!--<bean class="com.zaxxer.hikari.HikariDataSource" id="dataSource">-->
-        <!--<property name="jdbcUrl"-->
-                  <!--value="jdbc:mysql://localhost:3306/ushanka"/>-->
-        <!--<property name="username" value="ushanka_owner"/>-->
-        <!--<property name="password" value="password-1"/>-->
-        <!--<property name="dataSourceProperties" value="useSSL=false"/>-->
-        <!--&lt;!&ndash;<property name="dataSourceProperties" value="&ndash;&gt;-->
-        <!--&lt;!&ndash;verifyServerCertificate=false&amp;&ndash;&gt;-->
-        <!--&lt;!&ndash;useSSL=false&amp;&ndash;&gt;-->
-        <!--&lt;!&ndash;requireSSL=false&amp;&ndash;&gt;-->
-        <!--&lt;!&ndash;useLegacyDatetimeCode=false&amp;&ndash;&gt;-->
-        <!--&lt;!&ndash;serverTimezone=UTC"/>&ndash;&gt;-->
+    <!--прописываем настройки из db.properties в dataSource (db connection-pool HikariCP)-->
+    <bean class="com.zaxxer.hikari.HikariDataSource" id="dataSource">
+        <property name="jdbcUrl" value="${url}"/>
+        <property name="username" value="${user}"/>
+        <property name="password" value="${password}"/>
+        <property name="driverClassName" value="${driver}"/>
+    </bean>
+    <!--прописываем настройки из db.properties в dataSource (driver manager spring-jdbc)-->
+    <!--<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">-->
+    <!--<property name="url" value="${url}"/>-->
+    <!--<property name="username" value="${user}"/>-->
+    <!--<property name="password" value="${password}"/>-->
+    <!--<property name="driverClassName" value="${driver}"/>-->
     <!--</bean>-->
 
     <!--подключаем проперти-файл db.properties - настройки mysql-->
@@ -37,15 +37,8 @@
         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
     </bean>
 
-    <!--прописываем настройки из db.properties в dataSource (spring-jdbc)-->
-    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-        <property name="url" value="${url}"/>
-        <property name="username" value="${user}"/>
-        <property name="password" value="${password}"/>
-        <property name="driverClassName" value="${driver}"/>
+    <!--создаем бин для работы с базой данных (spring-jdbc) и передаем ему dataSource-->
+    <bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
+        <constructor-arg ref="dataSource"/>
     </bean>
-
-    <!--<bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">-->
-        <!--<constructor-arg ref="dataSource"/>-->
-    <!--</bean>-->
 </beans>
