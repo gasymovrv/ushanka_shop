@@ -1,6 +1,7 @@
 package ru.sstu.ushankashop.dao;
 
 import ru.sstu.ushankashop.domain.ItemEntity;
+import ru.sstu.ushankashop.dto.Item;
 
 import java.util.List;
 

@@ -1,7 +1,6 @@
 package ru.sstu.ushankashop.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,26 +15,24 @@ import java.util.List;
 @RequestMapping("catalog")
 public class CatalogController {
 
-    @Autowired
-    @Qualifier("cs")
-    CatalogService catalogService;
+   @Autowired
+   CatalogService catalogService;
 
     public CatalogService getCatalogService() {
         return catalogService;
     }
-
 
     public void setCatalogService(CatalogService catalogService) {
         this.catalogService = catalogService;
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Item> getAllItems() {
+    public List<Item> getAllItems(){
         return getCatalogService().getAllItems();
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "{id}")
-    public Item getItemDetails(@PathVariable Long id) {
+    public Item getItemDetails(@PathVariable Long id){
         return getCatalogService().getItemDetails(id);
     }
 }

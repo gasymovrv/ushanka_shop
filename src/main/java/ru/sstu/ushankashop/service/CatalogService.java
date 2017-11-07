@@ -9,7 +9,7 @@ import ru.sstu.ushankashop.dto.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("cs")
+@Service
 public class CatalogService {
     @Autowired
     private ItemDAO itemDAO;
