@@ -25,7 +25,7 @@ public class CartService {
 
     @Transactional
     public Cart addItemToCart(Long itemId, Integer quantity) {
-        UserEntity userEntity = userDAO.findById(1L);
+        UserEntity userEntity = userDAO.findById(1L);//todo откуда взялась эта единица?
         CartEntity cart = userEntity.getCart();
         if (userEntity.getCart() == null) {
             cart = new CartEntity();
@@ -55,7 +55,7 @@ public class CartService {
     
     @Transactional
     public Cart removeItemFromCart(Long itemId) {
-        UserEntity userEntity = userDAO.findById(1L);
+        UserEntity userEntity = userDAO.findById(1L);//todo откуда взялась эта единица?
         CartEntity cart = userEntity.getCart();
         CommerceItemEntity toDelete = null;
         for (CommerceItemEntity commerceItemEntity:cart.getItems()){

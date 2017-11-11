@@ -11,4 +11,6 @@ MySQL (connector/j 6.0.6)
 1) если hikari не коннектится с базой, то надо добавить параметр
 driverClassName = com.mysql.cj.jdbc.Driver
 2) зачем доп. слой dto? в чем отличие ItemEntity от Item?
+Entity - это работа с базой, dto - что выдаем клиенту
 3) делать через java.sql? или можно использовать spring-jdbc?
+используем hibernate + Spring-ORM - по стандарту JPA
