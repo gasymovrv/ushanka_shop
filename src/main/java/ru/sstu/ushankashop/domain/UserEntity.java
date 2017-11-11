@@ -1,5 +1,7 @@
 package ru.sstu.ushankashop.domain;
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,7 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Email//todo просто добавил чтоб проверить как работает hibernate-validator
     @Column(name = "email")
     private String email;
     @Column(name = "password")

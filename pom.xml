@@ -50,6 +50,12 @@
           <artifactId>spring-orm</artifactId>
           <version>4.3.12.RELEASE</version>
       </dependency>
+    <!--для аннотаций проверки значений (напр. "@Email")-->
+      <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-validator</artifactId>
+          <version>5.3.5.Final</version>
+      </dependency>
   </dependencies>
   <build>
     <finalName>ushankashop</finalName>

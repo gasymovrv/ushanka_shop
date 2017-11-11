@@ -19,7 +19,7 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User create(@RequestBody User user) {
+    public User create(@RequestBody User user) {//TODO зачем мы тут возвращаем значение? если не возвращать, все равно все работает
         return userService.create(user);
     }
     

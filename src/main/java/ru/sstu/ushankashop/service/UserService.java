@@ -24,7 +24,7 @@ public class UserService {
     
     @Transactional
     public User addShippingInfoToUser(ShippingInfo shippingInfo){
-        UserEntity userEntity = userDAO.findById(1L);
+        UserEntity userEntity = userDAO.findById(1L);//todo здесь что то вообще уму не постижимое
         ShippingInfoEntity shippingInfoEntity = shippingInfo.toEntity();
         shippingInfoEntity.setUser(userEntity);
         userEntity.getShippingInfo().add(shippingInfoEntity);
